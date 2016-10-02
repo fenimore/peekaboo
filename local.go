@@ -1,3 +1,4 @@
+// local gets the local address or CIDR (I think)
 package peekaboo
 
 import (
