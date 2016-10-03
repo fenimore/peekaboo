@@ -6,6 +6,7 @@
 package peekaboo
 
 import (
+	"fmt"
 	"net"
 	"os/exec"
 )
@@ -107,7 +108,7 @@ func AliveHosts(cidr string) ([]string, error) {
 	// this'll get picked up by the ping func.
 	for _, ip := range hosts {
 		pingChan <- ip
-		// fmt.Println("sent: ", ip)
+		fmt.Println("sent: ", ip)
 	}
 
 	done := <-doneChan
