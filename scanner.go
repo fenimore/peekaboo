@@ -13,7 +13,7 @@ func PortScan(ips []string) {
 		fmt.Println("scanning ", ip)
 		// Scanner
 		ps := portscanner.NewPortScanner(ip, time.Second)
-		openedPorts := ps.GetOpenedPort(20, 10000)
+		openedPorts := ps.GetOpenedPort(20, 1000)
 		//fmt.Println(openedPorts)
 		for i := 0; i < len(openedPorts); i++ {
 			port := openedPorts[i]

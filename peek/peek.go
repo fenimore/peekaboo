@@ -17,9 +17,11 @@ func main() {
 
 	ips, _ := peekaboo.BroadcastPing("10.0.255.255")
 	macs := peekaboo.Macs(ips)
-	fmt.Println(macs)
+	//fmt.Println(macs)
+	for _, ip := range ips {
+		fmt.Println(ip)
+	}
 	fmt.Println(len(macs), len(ips))
-
-	// This takes way too long
-	//peekaboo.PortScan(alives)
+	//hw, _ := net.ParseMAC(macs[0])
+	peekaboo.PortScan(ips)
 }
