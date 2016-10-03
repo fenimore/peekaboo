@@ -16,12 +16,16 @@ func main() {
 	ips := make([]string, 0)
 	for _, d := range data {
 		if strings.HasPrefix(d, "64") {
-			d = strings.TrimSuffix(d, ":")
-			d = strings.TrimPrefix(d, "from ")
-			fmt.Println(d)
-			ips = append(ips, d)
+			parts := strings.Split(d, ":")
+			fmt.Println(parts)
+			ip := strings.Split(parts[0], "from ")
+			fmt.Println(ip)
+			ips = append(ips, string(ip[1]))
 
 		}
 	}
-	//fmt.Println(ips)
+	for _, i := range ips {
+		fmt.Println(i)
+	}
+
 }
