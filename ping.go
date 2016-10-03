@@ -9,7 +9,27 @@ import (
 	"fmt"
 	"net"
 	"os/exec"
+	"strings"
 )
+
+// Broadcast returns the pings from a broadcast on the network.
+func BroadcastPing(ip string) ([]string, error) {
+	output, err := exec.Command("ping", "-b", "-c2", ip).Output()
+	if err != nil {
+		return nil, err
+	}
+	data := strings.Split(string(output), "\n")
+	ips := make([]string, 0)
+	for _, d := range data {
+		if strings.HasPrefix(d, "64") {
+			parts := strings.Split(d, ":")
+			ip := strings.Split(parts[0], "from ")
+			ips = append(ips, string(ip[1]))
+
+		}
+	}
+	return ips, nil
+}
 
 // Pong struct exists, because I need to know the status
 // of all the pings, not just the successful ones
