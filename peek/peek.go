@@ -23,5 +23,5 @@ func main() {
 	}
 	fmt.Println(len(macs), len(ips))
 	//hw, _ := net.ParseMAC(macs[0])
-	peekaboo.PortScan(ips)
+	//peekaboo.PortScan(ips)
 }
