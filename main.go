@@ -52,6 +52,9 @@ func Macs(ips []string) []string {
 	macs := make([]string, 0)
 	table := arp.Table()
 	for _, ip := range ips {
+		if table[ip] == "" {
+			continue
+		}
 		macs = append(macs, table[ip])
 	}
 	return macs
@@ -69,13 +72,14 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Printf("Total Devices, %d, and mac addresses %d",
+	fmt.Printf("Total Devices, %d, and mac addresses %d\n",
 		len(devices), len(macs))
+	var appleCount int
+	for _, d := range macs {
+		entry, err := db.Query(d)
+		if entry.Manufacturer == "Apple, Inc." {
 
-	entry, err := db.Query(macs[0])
-	if err == nil {
-		fmt.Println(entry)
-	} else {
-		fmt.Println(err)
+		}
 	}
+
 }
