@@ -34,7 +34,7 @@ func BroadcastPing(ip string) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(string(output))
+	//fmt.Println(string(output))
 	data := strings.Split(string(output), "\n")
 	ips := make([]string, 0)
 	for _, d := range data {
@@ -63,15 +63,15 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for _, d := range devices {
-		fmt.Println(d)
-	}
 	macs := Macs(devices)
 
 	db, err := oui.OpenStaticFile("oui.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
+	fmt.Printf("Total Devices, %d, and mac addresses %d",
+		len(devices), len(macs))
+
 	entry, err := db.Query(macs[0])
 	if err == nil {
 		fmt.Println(entry)
